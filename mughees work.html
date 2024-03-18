@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Rental Agreement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 21cm;
+            /* A4 width */
+            height: 29.7cm;
+            /* A4 height */
+            margin: auto;
+            padding: 0px 0px 20px 20px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            margin-top: 10px;
+
+        }
+
+        .sidebar {
+            width: 30px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 2px;
+            height: 200px;
+            background-color: orange;
+        }
+
+        .sidebar::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 2px;
+            height: 200px;
+            background-color: orange;
+        }
+
+        .sidebar-2 {
+            width: 3%;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .sidebar-2 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            transform: rotate(-90deg);
+            margin-top: 750px;
+
+        }
+
+        .info-name,
+        .info-email,
+        .info-phone-number {
+            margin: 5px 0;
+            white-space: nowrap;
+        }
+
+
+
+        .sidebar-2::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 2px;
+            height: 200px;
+            background-color: orange;
+        }
+
+        .sidebar-2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 2px;
+            height: 200px;
+            background-color: orange;
+        }
+
+        @media only screen and (max-width: 768px) {
+
+            .info-name,
+            .info-email,
+            .info-phone-number {
+                margin-bottom: 0px !important;
+            }
+        }
+
+
+        @media only screen and (max-width: 768px) {
+            .form-content {
+                margin-top: 20px;
+                margin-left: 0px !important;
+                width: 70%;
+                flex-grow: 1;
+                padding: 0 20px;
+                position: relative;
+            }
+
+            .sidebar {
+                width: 0px;
+                margin-top: 20px;
+                position: relative;
+            }
+
+            .sidebar::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 2px;
+                height: 200px;
+                background-color: orange;
+            }
+
+            .sidebar::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 2px;
+                height: 200px;
+                background-color: orange;
+            }
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        .form-content {
+            margin-top: 20px;
+            margin-left: 20px;
+            width: 70%;
+            flex-grow: 1;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-background {
+            position: absolute;
+            top: 80%;
+            right: 40%;
+            width: 100%;
+            height: 30%;
+            background-image: url(./Shape/Shape.webp);
+            background-size: 10%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .form-background-2 {
+            position: absolute;
+            top: 60%;
+            left: 185px;
+            width: 100%;
+            height: 30%;
+            background-image: url(./Shape/Shape.webp);
+            background-size: 30%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .form-background-2 {
+                position: absolute;
+                top: 70%;
+                left: 75px;
+                width: 100%;
+                height: 30%;
+                background-image: url(./Shape/Shape.webp);
+                background-size: 30%;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .container {
+                width: 90%;
+                height: auto;
+                margin: none;
+                padding: 0px 0px 20px 20px;
+                border: 1px solid #ccc;
+                flex-direction: column;
+            }
+
+            .sidebar {
+                border-right: none;
+            }
+        }
+
+        header img {
+            display: block;
+            margin-left: auto;
+            margin-top: -5px;
+            /* width: 750px; */
+            max-width: 100%;
+            height: auto;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .logo-img {
+            width: 150px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            color: rgb(92, 89, 89);
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .page-four-table-one {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .page-two-table-one {
+            width: 75%;
+            border-collapse: collapse;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .page-four-table-one {
+                width: 90%;
+                border-collapse: collapse;
+            }
+        }
+
+        .page-four-table-one td {
+            width: 50%;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .page-four-table-two {
+            width: 75%;
+            border-collapse: collapse;
+        }
+
+        p {
+            font-size: 13px;
+            color: rgb(92, 89, 89);
+        }
+
+
+        .point-margin {
+            margin-left: 30px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .point-margin {
+                margin-left: 5px;
+            }
+        }
+
+        .footer-paragrapgh-page-2 {
+            text-align: center;
+            margin-top: 150px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .footer-paragrapgh-page-2 {
+                text-align: center;
+                margin-top: 150px;
+                font-size: 7px;
+            }
+        }
+
+        .footer-paragrapgh-page-4 {
+            text-align: center;
+            margin-top: 400px;
+        }
+
+        .footer-paragrapgh-page-1 {
+            text-align: center;
+            margin-top: 150px;
+
+        }
+
+        @media only screen and (max-width: 768px) {
+            .footer-paragrapgh-page-1 {
+                text-align: center;
+                margin-top: 100px;
+                font-size: 7px;
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .footer-paragrapgh-page-4 {
+                text-align: center;
+                margin-top: 300px;
+                font-size: 7px;
+            }
+        }
+
+        .footer-paragrapgh-page-3 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .footer-paragrapgh-page-3 {
+                text-align: center;
+                margin-top: 50px;
+                font-size: 7px;
+            }
+        }
+
+        .first-page-content-box {
+            margin-left: 60px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .first-page-content-box {
+                margin-left: 30px;
+            }
+        }
+
+        /* CSS for mobile view */
+        @media only screen and (max-width: 768px) {
+            .logo-img {
+                margin-top: 20px;
+                width: 100px;
+            }
+
+            h3 {
+                font-size: 10px;
+                margin-top: 10px;
+            }
+        }
+
+        .vehicle-detail-table {
+            margin-left: 120px;
+            width: 80%;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .vehicle-detail-table {
+                margin-left: 40px;
+                width: 80%;
+            }
+        }
+
+        .content-of-figure {
+            text-align: center;
+            margin-top: 0;
+            padding-top: 0px;
+            color: grey
+        }
+
+        @media only screen and (max-width: 768px) {
+            .content-of-figure {
+                margin-top: 4px;
+                padding-top: 0px;
+                color: grey;
+                font-size: 9px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="./header.png" alt="Your Image">
+        </header>
+
+        <div class="content" style="display: flex;">
+            <div class="sidebar-2">
+                <div class="sidebar-content">
+                    <p class="info-name" style="padding-right: 40px; margin-bottom: -10px;">
+                        <i class="fas fa-user" style="margin-right: 5px;"></i>Vertex Cars ltd
+                    </p>
+                    <p class="info-email" style="padding-right: 40px; margin-bottom: -10px;"">
+                        <i class=" fas fa-envelope" style="margin-right: 5px;"></i>nfo@vertexcars.co.uk
+                    </p>
+                    <p class="info-phone-number" style="padding-right: 40px; margin-bottom: -10px;"">
+                        <i class=" fas fa-phone" style="margin-right: 5px;"></i>0330 133 0153
+                    </p>
+                </div>
+            </div>
+
+            <div class="first-page-content-box form-content-2">
+                <img class="logo-img" src="./logo.jpg" alt="">
+                <h3>VEHICLE RENTAL AGREEMENT</h3>
+                <p>1. This Vehicle Rental Agreement (“Agreement”) is made between.</p>
+                <table class="page-four-table-one">
+
+                    <tr>
+                        <td>Vertex Cars Ltd (Owner) </td>
+                        <td>Renter: </td>
+                    </tr>
+                    <tr>
+                        <td>Renter (Full Name)</td>
+                        <td>Full Name:</td>
+                    </tr>
+                    <tr>
+                        <td>Address: </td>
+                        <td>Signature:</td>
+                    </tr>
+                    <tr>
+                        <td>Post Code </td>
+                        <td>Date: </td>
+                    </tr>
+                    <tr>
+                        <td>License Number: </td>
+                        <td>Date: </td>
+                    </tr>
+                    <tr>
+                        <td>License Expiry </td>
+                        <td>Date: </td>
+                    </tr>
+                    <tr>
+                        <td>Date Of Birth </td>
+                        <td>Date: </td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number: </td>
+                        <td>Date: </td>
+                    </tr>
+                    <tr>
+                        <td>Email Address: </td>
+                        <td>Date: </td>
+                    </tr>
+                </table>
+                <p class="content-of-figure">1.1 Owner and Renter are
+                    hereinafter collectively referred to as
+                    “Parties”.</p>
+
+                <p>Owner rents to Renter and Renter rents from Owner, subject to the terms and conditions of this
+                    Agreement </p>
+                <p><b>1a. Vehicle Details:</b></p>
+
+                <table class="page-four-table-one vehicle-detail-table">
+
+                    <tr>
+                        <td>Make</td>
+                        <td>renter: </td>
+                    </tr>
+                    <tr>
+                        <td>Model</td>
+                        <td>Mercedes</td>
+                    </tr>
+                    <tr>
+                        <td>Vehicle Registration</td>
+                        <td>Signature:</td>
+                    </tr>
+                    <tr>
+                        <td>Color </td>
+                        <td>Date: </td>
+                    </tr>
+                    <tr>
+                        <td>Fuel Type </td>
+                        <td>Date: </td>
+                    </tr>
+                </table>
+                <p><b>1b. Agreement Commencement Date & Time:</b> </p>
+                <table class="page-four-table-one">
+
+                    <tr>
+                        <td>Start Date & Time </td>
+                        <td>18/3/2024 </td>
+                    </tr>
+                    <tr>
+                        <td>End Date & Time</td>
+                        <td>22/2/2080</td>
+                    </tr>
+
+                </table>
+
+                <p class="footer-paragrapgh-page-1">Langley Railway Station Car park, Station Yard, Slough, Langley, SL3
+                    6ED</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <header>
+            <img src="./header.png" alt="Your Image">
+        </header>
+        <div class="content" style="display: flex;">
+            <div class="sidebar"></div>
+            <div class="form-content">
+
+                <p><b>1.b Term.</b> This Agreement shall commence on the day the Renter takes possession of Vehicle and
+                    remain
+                    in full force and effect until Vehicle is returned to Owner. Renter shall return the Vehicle unless
+                    this Agreement is terminated earlier consistent with the terms herein. This agreement is valid for 6
+                    months from the date of commencement of agreement and renter takes possession of the vehicle, if
+                    renter wants to continue to keep the vehicle, the agreement will be renewed after every 3 months
+                    period. Renter can cancel the agreement with 1 week notice after the 4 weeks from start date.</p>
+                <p><b>2. Payment and Security Deposit:</b></p>
+                <table class="page-two-table-one">
+
+                    <tr>
+                        <td style="font-size: 12px;"><b>Weelly Rent: </b></td>
+                        <td>Dummy Text 2</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 12px;"><b>Security Deposit</b></td>
+                        <td>Dummy Text 4</td>
+                    </tr>
+                </table>
+                <p class="point-margin">a) Renter shall pay weekly into bank account or cash on due date
+                    <b>(amount
+                        mentioned in clause 2 of
+                        this agreement)</b>. Renter shall also pay other charges in accordance with this Agreement due
+                    upon
+                    return of Vehicle.
+                </p>
+
+                <p class="point-margin">b) Charges for optional services, if any.</p>
+
+                <p class="point-margin">c) Loss of, or damage or repair to the Vehicle, loss of use, diminution of the
+                    Vehicle's value caused
+                    by damage to it or repair to it, and costs to enforce such charges including administrative fees for
+                    processing the claim and legal expenses.</p>
+
+                <p class="point-margin">d) £ 20 extra charge per day for late return of the Vehicle.</p>
+
+                <p class="point-margin">e) Unless due to the fault of Owner, all fines, penalties, traffic and/or
+                    parking violations, court
+                    costs, towing charges and other expenses relating to the Vehicle assessed against Owner or the
+                    Vehicle during the rental Term.</p>
+
+                <p class="point-margin">f) All expenses Owner incurs due to Renter’s failure to return the Vehicle
+                    including costs in
+                    locating and recovering the Vehicle.</p>
+
+                <p class="point-margin">g) All costs incurred to collect unpaid monies due.</p>
+
+                <p><b>2.1 Security Deposit.</b> In addition to the fees listed in Section 2, Renter shall pay a deposit
+                    as
+                    mentioned in Clause 2 of this agreement at the time this Agreement is signed. Owner may use the
+                    deposit to cover any amounts due under this Agreement.</p>
+
+                <p><b>3. Authorized Drivers.</b> Only those who are a party to this Agreement, sign the Agreement and
+                    have a
+                    current valid driver’s license to operate the Vehicle are permitted to drive the Vehicle. Any other
+                    drivers are prohibited from operating Vehicle.</p>
+
+
+                <p><b>4. Insurance.</b> Renter is responsible for all loss or damage Renter causes in Vehicle to third
+                    parties.
+                    Renter must carry insurance satisfactory to Owner. If Owner does not possess such insurance or where
+                    law requires, Owner will arrange for automobile insurance to cover Vehicle and Renter. Owner will
+                    charge Renter for the insurance provided or It is renter’s responsibility to arrange appropriate
+                    insurance, in the event of any accident damage or any other damage to the vehicle Renter is
+                    responsible to pay those damages either from his insurer or renter bound to pay. Renter is
+                    responsible to have a valid comprehensive insurance of the vehicle throughout the hire period.</p>
+
+                <p><b>5. Restrictions on Use.</b> Renter shall not:
+                    <br>a) Permit the Vehicle to be driven by any person who is not an Authorized Driver under this
+                    Agreement.
+                    <br>b) Operate the Vehicle or permit it to be operated in violation of law, including but not
+                    limited to driving under the influence of alcohol or drugs, or in breach of rules and regulations of
+                    road traffic.
+                </p>
+                <div class="form-background"></div>
+                <p class="footer-paragrapgh-page-2">Langley Railway Station Car park, Station Yard, Slough, Langley, SL3
+                    6ED</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+        <header>
+            <img src="./header.png" alt="Your Image">
+        </header>
+        <div class="content" style="display: flex;">
+            <div class="sidebar"></div>
+            <div class="form-content">
+
+                <p>c) Operate the Vehicle or permit it to be operated to commit a violation of law.</p>
+                <p>d) Operate the Vehicle or permit it to be operated for any race, test, or contest.</p>
+                <p>e) Operate the Vehicle or permit it to be operated for the transport of more passengers or goods than
+                    the maximum allowable for the Vehicle or to carry hazardous or explosive substances of any kind.</p>
+                <p>f) Drive or permit the Vehicle to be driven by any person who does not hold a current valid driver's
+                    license to operate the Vehicle;</p>
+                <p>g) Drive or permit the Vehicle to be driven or parked on roadways not regularly maintained, or on any
+                    roads, beach, driveway, or surface likely to cause damage to the Vehicle.</p>
+                <p>h) Operate the Vehicle or allow it to be operated to push or tow any other vehicle;</p>
+                <p>i) allow any person to smoke in the Vehicle.</p>
+
+                <p><b>6. Repair or Loss and Reporting to Police.</b> Vehicle shall not be serviced or repaired, and
+                    parts and
+                    accessories shall not be replaced without Owner’s prior consent. Renter shall alert Owner to any
+                    damage to the Vehicle. Renter shall be responsible for any loss or damage to Vehicle and loss of
+                    use, diminution of the Vehicle's value caused by damage to it or repair to it and missing equipment.
+                    In the event Renter is in an accident, has an incident in Vehicle or if Vehicle is subject to theft
+                    or vandalism Renter shall report the accident or incident to Owner as soon as practicable.</p>
+                <p><b>7. Condition of Vehicle.</b> The Condition of Vehicle Checklist (“Checklist”) attached is hereby
+                    incorporated by reference. Renter acknowledges that Renter has examined the Vehicle and that it is
+                    in good condition except as otherwise specified in the Checklist. OWNER MAKES NO WARRANTY, EXPRESS
+                    OR IMPLIED, COURSE OF DEALING, COURSE OF PERFORMANCE AND EXPRESSLY EXCLUDES AND DISCLAIMS ALL
+                    WARRANTIES AND REPRESENTATIONS OF ANY KIND, INCLUDING ANY WARRANTIES OF MERCHANTABILITY AND FITNESS
+                    FOR A PARTICULAR PURPOSE.</p>
+                <!-- <div class="form-background-2"></div> -->
+                <p><b>8. Return of Vehicle.</b> Renter shall return Vehicle on the date specified in Section 1 in the
+                    same
+                    condition as Renter received it, except for normal wear and tear. Renter shall return the Vehicle to
+                    the agreed return location. If Vehicle is not returned on said date, Owner reserves the right to
+                    take any action necessary to regain possession of the Vehicle. Renter is liable to bring the vehicle
+                    back to the agreed location on the demand of the owner.</p>
+                <p><b>9. Termination.</b> This Agreement shall terminate on the date specified in Section 1. Owner
+                    reserves the
+                    right to terminate this Agreement earlier upon notice to Renter.</p>
+                <p><b>10. Indemnification and Liability.</b> Renter shall indemnify, defend and hold harmless Owner from
+                    and
+                    against any claim, demand, cause of action, loss or liability (including attorney’s fees and
+                    expenses of litigation) for any property damage or personal injury arising from Renter’s use of
+                    Vehicle by any cause, , except to the extent caused by Owner’s gross negligence or willful
+                    misconduct. <b>In no event shall Owner be responsible for any indirect, special or consequential
+                        loss
+                        or damages arising from Renter’s use of Vehicle, including but not limited to loss profits and
+                        loss
+                        revenue, even if informed of such damages. The provisions of this Article shall survive the
+                        termination of this Agreement with respect to any claims or liability accruing before such
+                        termination. IN NO EVENT SHALL OWNER BE LIABLE FOR ANY INDIRECT, SPECIAL OR CONSEQUENTIAL LOSS
+                        OR
+                        DAMAGES ARISING FROM RENTER’S USE OF VEHICLE, INCLUDING BUT NOT LIMITED TO LOSS PROFITS AND LOSS
+                        REVENUE, EVEN IF INFORMED OF THE POSSIBILITY OF SUCH DAMAGES.</b></p>
+                <p><b>11. Renter is responsible for the following.</b>
+                <p>Renter is responsible to pay for any parking charges and any penalty charges on the vehicle
+                    during the hire duration.</p>
+                <p>Renter is responsible to pay for any toll or congestion charges & Ultra low Emission Zone
+                    charges.</p>
+                </p>
+
+                <p><b>12. Ownership.</b> Owner shall always retain ownership and documents for the Vehicle. Renter shall
+                    immediately notify Owner in the event Vehicle is levied, has a lien attached or is threatened with
+                    seizure. Renter shall indemnify and hold Owner harmless against all loss and damages caused by such
+                    action.</p>
+
+                <p><b>13. Severability. </b>In the event any provision of this Agreement is held by a court or other
+                    tribunal
+                    of competent jurisdiction to be unenforceable, that provision will be enforced to the maximum extent
+                    permissible under applicable law, and the other provisions of this Agreement will remain in full
+                    force and effect. The parties further agree that in the event such provision is an essential part of
+                    this Agreement, they will begin negotiations for a suitable replacement provision.</p>
+                <div class="form-background"></div>
+                <p class="footer-paragrapgh-page-3">Langley Railway Station Car park, Station Yard, Slough, Langley, SL3
+                    6ED
+                </p>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="container">
+        <header>
+            <img src="./header.png" alt="Your Image">
+        </header>
+        <div class="content" style="display: flex;">
+            <div class="sidebar"></div>
+            <div class="form-content">
+                <p><b>14. Entire Agreement.</b> This Agreement represents the entire understanding relating to the
+                    subject
+                    matter hereof and prevails over any prior or contemporaneous, conflicting, or additional
+                    communications. This Agreement can only be modified by a written amendment signed by the party
+                    against whom enforcement of such modification is sought.</p>
+
+                <p><b>15. Assignment.</b> Renter may not, without the prior written consent of Owner, transfer or assign
+                    this
+                    Agreement or any part thereof. Any attempt to do so shall be a material default of this Agreement
+                    and shall be void. Renter acknowledges receipt of a copy of this Agreement and acknowledges having
+                    read and understood the terms and conditions.</p>
+                <p>16:Signatures:</p>
+                <table class="page-four-table-one">
+
+                    <tr>
+                        <td>Cars Lt On Behalf of Vertex Cars Ltd (owner):</td>
+                        <td>Renter: </td>
+                    </tr>
+                    <tr>
+                        <td>Full Name:</td>
+                        <td>Full Name:</td>
+                    </tr>
+                    <tr>
+                        <td>Signature:</td>
+                        <td>Signature:</td>
+                    </tr>
+                    <tr>
+                        <td>Date: </td>
+                        <td>Date: </td>
+                    </tr>
+                </table>
+                <p style="margin-top: 40px;"><b>17. Next Of Kin/Reference:</b> </p>
+                <table class="page-four-table-two">
+
+                    <tr>
+                        <td>Full Name:</td>
+                        <td>Syed Hussain Ahmad</td>
+                    </tr>
+                    <tr>
+                        <td>Address: </td>
+                        <td>Walton Road</td>
+                    </tr>
+                    <tr>
+                        <td>Phone No: </td>
+                        <td>+923363504242</td>
+                    </tr>
+                    <tr>
+                        <td>Email: </td>
+                        <td>syedh2958@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>Dummy Text 3</td>
+                        <td>Dummy Text 4</td>
+                    </tr>
+                </table>
+                <div class="form-background-2"></div>
+                <div class="form-background"></div>
+                <p class="footer-paragrapgh-page-4">Langley Railway Station Car park, Station Yard, Slough, Langley, SL3
+                    6ED</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
